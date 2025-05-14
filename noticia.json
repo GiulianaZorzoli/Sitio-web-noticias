@@ -1,0 +1,9 @@
+{
+    "titulo":"Noticia 1",
+    "descripcion": "Descripcion de noticia 1",
+    "calle":"Calle",
+    "altura":1234,
+    "partido":"San Miguel",
+    "coordenada_x":1243251361,
+    "coordenada_y": 123124125
+}

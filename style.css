@@ -131,7 +131,11 @@
   }
   
 
-  
+  .map {
+     height: 400px; 
+     width: 400px;
+  }
+
   /* Footer */
   footer {
     background-color: rgb(45, 74, 128);
