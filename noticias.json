@@ -1,0 +1,20 @@
+[
+  {
+    "titulo": "Evento comunitario",
+    "descripcion": "La comunidad se reunió para celebrar el festival anual.",
+    "tema": "Eventos",
+    "fecha": "2025-05-10"
+  },
+  {
+    "titulo": "Nuevas obras municipales",
+    "descripcion": "Se iniciaron los trabajos de pavimentación en el centro.",
+    "tema": "Municipio",
+    "fecha": "2025-05-08"
+  },
+  {
+    "titulo": "Informe económico trimestral",
+    "descripcion": "El municipio presentó el balance económico del trimestre.",
+    "tema": "Economía",
+    "fecha": "2025-05-05"
+  }
+]
