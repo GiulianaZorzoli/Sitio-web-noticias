@@ -65,11 +65,15 @@
   }
   
   .filtros {
-    display: flex;
+    display: none; /* flex */
     gap: 1.5rem;
     align-items: flex-end;
     flex-wrap: wrap;
   }
+
+.filtros.visible {
+  display: flex;
+}
   
   .filtros > div {
     display: flex;
@@ -104,6 +108,21 @@
   }
   
   .filtro-boton button:hover {
+    background-color: #e0e0e0;
+  }
+
+  .toggle-btn {
+    padding: 0.7rem 1.5rem;
+    background-color: white;
+    color: rgb(45, 74, 128);
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-bottom: 1rem;
+  }
+  
+  .toggle-btn:hover {
     background-color: #e0e0e0;
   }
 

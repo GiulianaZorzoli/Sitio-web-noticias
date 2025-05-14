@@ -1,52 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Muni al día</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <nav>
-      <h1>Muni Al Día</h1>
-      <div>
-        <a href="">Noticias</a>
-        <button href="" >Añadir</a>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Muni al día</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Playfair+Display:wght@700&display=swap"
+    rel="stylesheet">
+  <script src="script.js"></script>
+</head>
+
+<body>
+  <nav>
+    <h1>Muni Al Día</h1>
+    <div>
+      <a href="">Noticias</a>
+      <button href="">Añadir</a>
+    </div>
+  </nav>
+  <main>
+    <div class="seccion_filtros">
+      <button id="toggleFiltros" class="toggle-btn">Filtrar noticias</button>
+      <div class="filtros" id="contenedorFiltros">
+        <div>
+          <h3>Filtrar por contenido</h3>
+          <input type="text" placeholder="Buscar..." />
+        </div>
+        <div>
+          <h3>Fecha desde</h3>
+          <input type="date" />
+        </div>
+        <div>
+          <h3>Fecha hasta</h3>
+          <input type="date" />
+        </div>
+        <div>
+          <label for="opciones">Tema</label>
+          <select id="opciones" name="opciones">
+            <option value="opcion1">Seleccionar</option>
+            <option value="opcion2">Municipio</option>
+            <option value="opcion3">Eventos</option>
+            <option value="opcion4">Economía</option>
+            <option value="opcion5">Social</option>
+          </select>
+        </div>
+        <div class="filtro-boton">
+          <button>Filtrar</button>
+        </div>
       </div>
-    </nav>
-    <main>
-      <div class="seccion_filtros">
-        <h2>Filtrar noticias</h2>
-        <div class="filtros">
-            <div>
-              <h3>Filtrar por contenido</h3>
-              <input type="text" placeholder="Buscar..." />
-            </div>
-            <div>
-              <h3>Fecha desde</h3>
-              <input type="date" />
-            </div>
-            <div>
-              <h3>Fecha hasta</h3>
-              <input type="date" />
-            </div>
-            <div>
-              <label for="opciones">Tema</label>
-              <select id="opciones" name="opciones">
-                <option value="opcion1">Seleccionar</option>
-                <option value="opcion2">Municipio</option>
-                <option value="opcion3">Eventos</option>
-                <option value="opcion4">Economía</option>
-                <option value="opcion5">Social</option>
-              </select>
-            </div>
-            <div class="filtro-boton">
-              <button>Filtrar</button>
-            </div>
-        
-      </div>
-    </main>
-    <footer></footer>
-  </body>
+    </div>
+
+  </main>
+  <footer></footer>
+</body>
+
 </html>
