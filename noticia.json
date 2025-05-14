@@ -1,0 +1,20 @@
+[
+    {
+    "titulo":"Noticia 1",
+    "descripcion": "Descripcion de noticia 1",
+    "calle":"Cerrito",
+    "altura":618,
+    "partido":"CABA",
+    "coordenada_x":1243251361,
+    "coordenada_y": 123124125
+},
+    {
+    "titulo":"Noticia 2",
+    "descripcion": "Descripcion de noticia 2",
+    "calle":"Entre Ríos",
+    "altura":998,
+    "partido":"Bella Vista",
+    "coordenada_x":1243251361,
+    "coordenada_y": 123124125
+}
+]
