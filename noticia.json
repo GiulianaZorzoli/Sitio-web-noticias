@@ -1,12 +1,14 @@
 [
     {
-    "titulo":"Noticia 1",
-    "descripcion": "Descripcion de noticia 1",
+    "titulo":"Se abren las inscripciones al equipo de fútbol municipal.",
+    "descripcion": "A partir del lunes estarán abiertas las inscripciónes. Acercarse al predio municipal con DNI.",
     "calle":"Cerrito",
     "altura":618,
     "partido":"CABA",
     "coordenada_x":1243251361,
-    "coordenada_y": 123124125
+    "coordenada_y": 123124125,
+    "tema": "Deporte",
+    "fecha": "2024-01-07"
 },
     {
     "titulo":"Noticia 2",
@@ -15,6 +17,38 @@
     "altura":998,
     "partido":"Bella Vista",
     "coordenada_x":1243251361,
-    "coordenada_y": 123124125
-}
+    "coordenada_y": 123124125,
+    "tema": "Gastronomía",
+    "fecha": "2025-04-10"
+},
+{
+    "titulo": "Evento comunitario",
+    "descripcion": "La comunidad se reunió para celebrar el festival anual.",
+    "altura":998,
+    "partido":"Bella Vista",
+    "coordenada_x":1243251361,
+    "coordenada_y": 123124125,
+    "tema": "Eventos",
+    "fecha": "2025-05-10"
+},
+{
+    "titulo": "Nuevas obras municipales",
+    "descripcion": "Se iniciaron los trabajos de pavimentación en el centro.",
+    "altura":998,
+    "partido":"Bella Vista",
+    "coordenada_x":1243251361,
+    "coordenada_y": 123124125,
+    "tema": "Municipio",
+    "fecha": "2025-05-08"
+},
+{
+    "titulo": "Informe económico trimestral",
+    "descripcion": "El municipio presentó el balance económico del trimestre.",
+    "altura":998,
+    "partido":"Bella Vista",
+    "coordenada_x":1243251361,
+    "coordenada_y": 123124125,
+    "tema": "Economía",
+    "fecha": "2025-05-05"
+  }
 ]

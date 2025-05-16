@@ -26,28 +26,30 @@
       <div class="filtros" id="contenedorFiltros">
         <div>
           <h3>Filtrar por contenido</h3>
-          <input type="text" placeholder="Buscar..." />
+          <input type="text" placeholder="Buscar..."  id="busquedaContenido"/>
         </div>
         <div>
           <h3>Fecha desde</h3>
-          <input type="date" />
+          <input type="date" id="busquedaFechaDesde"/>
         </div>
         <div>
           <h3>Fecha hasta</h3>
-          <input type="date" />
+          <input type="date" id="busquedaFechaHasta" />
         </div>
         <div>
-          <label for="opciones">Tema</label>
-          <select id="opciones" name="opciones">
-            <option value="opcion1">Seleccionar</option>
-            <option value="opcion2">Municipio</option>
-            <option value="opcion3">Eventos</option>
-            <option value="opcion4">Economía</option>
-            <option value="opcion5">Social</option>
+          <label for="busquedaTema">Tema</label>
+          <select id="busquedaTema" name="opciones">
+            <option value="Seleccionar" selected>Seleccionar</option>
+            <option value="Municipio">Municipio</option>
+            <option value="Eventos">Eventos</option>
+            <option value="Economía">Economía</option>
+            <option value="Social">Social</option>
+            <option value="Deporte">Deporte</option>
+            <option value="Gastronomía">Gastronomía</option>
           </select>
         </div>
         <div class="filtro-boton">
-          <button>Filtrar</button>
+          <button id="botonFiltro">Filtrar</button>
         </div>
       </div>
     </div>
