@@ -1,21 +1,35 @@
 document.addEventListener("DOMContentLoaded", main);
 
+
 async function main() {
+  definirRol();
   abrirPanelFiltro();
+
   const response = await fetch("noticia.json");
   const noticias = await response.json();
   cargarNoticias(noticias);
+
+  filtrarNoticias();
+  limpiarFiltros();
 }
 
-function abrirPanelFiltro() {
-  let botonFiltro = document.getElementById("toggleFiltros");
-  let contenedorFiltros = document.getElementById("contenedorFiltros");
 
-  botonFiltro.addEventListener("click", () =>
-    contenedorFiltros.classList.toggle("visible")
-  );
+//Definicion de rol (Administrador/Visitante)
+function definirRol(){
+  const btnAdmin = document.getElementById("btnAdmin");
+  const btnVisitante = document.getElementById("btnVisitante");
+  const btnAñadirNoticia = document.getElementById("btnAñadirNoticia");
+
+  btnAdmin.addEventListener("click", () => {
+    btnAñadirNoticia.style.display = "inline-block";
+  });
+
+  btnVisitante.addEventListener("click", () => {
+    btnAñadirNoticia.style.display = "none";
+  });
 }
 
+//Carga y visualizacion de noticias
 async function cargarNoticias(noticias) {
 
   const contenedorNoticias = document.getElementById("lista_noticias");
@@ -33,23 +47,17 @@ async function cargarNoticias(noticias) {
 
     div.addEventListener("click", () => {
       const detalle = document.getElementById("detalle_noticia");
-
-      // Si ya está visible, ocultar
-      if (detalle.classList.contains("visible")) {
-        detalle.classList.remove("visible");
-        detalle.innerHTML = ""; // Opcional: vaciar contenido
-      } else {
         mostrarDetalleNoticia(noticia);
-      }
     });
 
     contenedorNoticias.appendChild(div);
   });
 }
 
+
 function mostrarDetalleNoticia(noticia) {
   const contenedor = document.getElementById("detalle_noticia");
-  contenedor.innerHTML = ""; // limpiar contenido anterior
+  contenedor.innerHTML = ""; 
 
   const card = document.createElement("div");
   card.classList.add("detalle");
@@ -69,15 +77,29 @@ function mostrarDetalleNoticia(noticia) {
 //    partido: noticia.partido,
 //  });
 
-    const mapaDiv = obtenerMapa(
+// Se podria definir que las noticias solo las registramos con calle y numeracion, no con dos entre calles.
+// Si no se registro una calle para la noticia, dicha noticia no posee una localizacion geografica.
+    if (noticia.calle != ''){
+      const mapaDiv = obtenerMapa(
       noticia.coordenada_x,
       noticia.coordenada_y
     );
+
     card.appendChild(mapaDiv);
+    }
+
     contenedor.appendChild(card);
     contenedor.classList.add("visible");
 }
 
+function omitirDetalleNoticia() {
+  const contenedor = document.getElementById("detalle_noticia");
+  contenedor.innerHTML = ""; 
+  contenedor.classList.remove("visible"); 
+}
+
+
+//Normalizacion de direccion de una noticia y obtencion de mapa
 function obtenerMapa(coordenada_x, coordenada_y) {
   const mapDiv = document.createElement("div");
   mapDiv.style.width = "300px";
@@ -96,6 +118,7 @@ function obtenerMapa(coordenada_x, coordenada_y) {
 
   return mapDiv;
 }
+
 
 function normalizarDireccion(json_direccion) {
   /// Esta función recibe un JSON con el formato:
@@ -132,7 +155,25 @@ function normalizarDireccion(json_direccion) {
     });
 }
 
-async function filtradoDeNoticias(){
+
+//Filtro de noticias
+function abrirPanelFiltro() {
+  let botonFiltro = document.getElementById("toggleFiltros");
+  let contenedorFiltros = document.getElementById("contenedorFiltros");
+
+  botonFiltro.addEventListener("click", () =>
+    contenedorFiltros.classList.toggle("visible")
+  );
+}
+
+
+function filtrarNoticias(){
+  const botonFiltro = document.getElementById("botonFiltro")
+  botonFiltro.addEventListener("click", ()=> obtenerNoticiasPorFiltro())
+}
+
+
+async function obtenerNoticiasPorFiltro(){
   const inputContenido = document.getElementById("busquedaContenido");
   const inputFechaDesde = document.getElementById("busquedaFechaDesde");
   const inputFechaHasta = document.getElementById("busquedaFechaHasta");
@@ -158,8 +199,9 @@ async function filtradoDeNoticias(){
   }
 
   cargarNoticias(noticias);
-
+  omitirDetalleNoticia();
 }
+
 
 function filtrarPorContenido(noticias, contenido){
   const contenidoEnMinuscula = contenido.toLowerCase();
@@ -169,6 +211,7 @@ function filtrarPorContenido(noticias, contenido){
     noticia.descripcion.toLowerCase().includes(contenidoEnMinuscula)
   );
 }
+
 
 function filtrarPorFecha(noticias, fecha, esFechaDesde){
   const fechaObj = new Date(fecha);
@@ -188,6 +231,21 @@ function filtrarPorTema(noticias, tema){
   return noticias.filter(noticia => noticia.tema == tema);
 }
 
-const botonFiltro = document.getElementById("botonFiltro")
 
-botonFiltro.addEventListener("click", ()=> filtradoDeNoticias())
+function limpiarFiltros(){
+  const botonLimpiar = document.getElementById("botonLimpiar");
+
+  botonLimpiar.addEventListener("click", async () => {
+
+    document.getElementById("busquedaContenido").value = "";
+    document.getElementById("busquedaFechaDesde").value = "";
+    document.getElementById("busquedaFechaHasta").value = "";
+    document.getElementById("busquedaTema").value = "Seleccionar"; // o el valor por defecto
+
+
+    const response = await fetch("noticia.json");
+    const noticias = await response.json();
+    cargarNoticias(noticias);
+    omitirDetalleNoticia();
+  });
+}

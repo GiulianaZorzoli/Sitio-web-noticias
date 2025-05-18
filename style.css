@@ -10,6 +10,14 @@
     flex-direction: column;
     height: 100vh;
   }
+
+  .btnRoles {
+    display: flex;
+  }
+
+  .menuNoticias {
+     display: flex;
+  }
   
   /* Estilos para navegación */
   nav {
@@ -50,7 +58,24 @@
   nav div button:hover {
     background-color: rgba(255, 255, 255, 0.2);
   }
-  
+
+  .boton_rol {
+  background: transparent;
+  border: 2px solid rgba(91, 144, 210, 0.8);
+  color: rgba(91, 144, 210, 1);
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 5px rgba(91, 144, 210, 0.4);
+}
+
+.boton_rol:hover {
+  background-color: rgba(91, 144, 210, 0.8);
+  color: white;
+  box-shadow: 0 0 10px rgba(91, 144, 210, 0.6);
+}
+
   /* Sección de filtros */
   
   .seccion_filtros {
@@ -97,10 +122,17 @@
     font-size: 1rem;
   }
   
+  .filtro-boton {
+      display: flex;
+      gap: 5px; 
+      align-items: center; 
+  }
+  
+
   .filtro-boton button {
     padding: 0.7rem 1.5rem;
-    background-color: white;
-    color: rgb(45, 74, 128);
+    background-color: rgb(45, 74, 128);
+    color: white;
     border: none;
     border-radius: 8px;
     font-size: 1rem;
@@ -108,8 +140,11 @@
   }
   
   .filtro-boton button:hover {
-    background-color: #e0e0e0;
+    background-color: white;
+    color: rgb(45, 74, 128);
+
   }
+  
 
   .toggle-btn {
     padding: 0.7rem 1.5rem;

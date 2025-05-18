@@ -15,9 +15,17 @@
 <body>
   <nav>
     <h1>Muni Al Día</h1>
-    <div>
+
+    <div id="menuNoticias">
       <a href="">Noticias</a>
-      <button href="">Añadir</a>
+
+      <button id="btnAñadirNoticia" style="display: none;">Añadir Noticia</button>
+
+      <div id="btnRoles">
+      <button class="boton_rol" id="btnAdmin">Administrador</button>
+      <button class="boton_rol" id="btnVisitante">Visitante</button>
+      </div>
+
     </div>
   </nav>
   <main id="noticias">
@@ -48,8 +56,11 @@
             <option value="Gastronomía">Gastronomía</option>
           </select>
         </div>
-        <div class="filtro-boton">
-          <button id="botonFiltro">Filtrar</button>
+        <div>
+          <div class="filtro-boton">
+            <button id="botonFiltro">Filtrar</button>
+            <button id="botonLimpiar">X</button>
+          </div>
         </div>
       </div>
     </div>
