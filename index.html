@@ -22,8 +22,8 @@
       <button id="btnAñadirNoticia" style="display: none;">Añadir Noticia</button>
 
       <div id="btnRoles">
-      <button class="boton_rol" id="btnAdmin">Administrador</button>
-      <button class="boton_rol" id="btnVisitante">Visitante</button>
+        <button class="boton_rol" id="btnAdmin">Administrador</button>
+        <button class="boton_rol" id="btnVisitante">Visitante</button>
       </div>
 
     </div>
@@ -34,11 +34,11 @@
       <div class="filtros" id="contenedorFiltros">
         <div>
           <h3>Filtrar por contenido</h3>
-          <input type="text" placeholder="Buscar..."  id="busquedaContenido"/>
+          <input type="text" placeholder="Buscar..." id="busquedaContenido" />
         </div>
         <div>
           <h3>Fecha desde</h3>
-          <input type="date" id="busquedaFechaDesde"/>
+          <input type="date" id="busquedaFechaDesde" />
         </div>
         <div>
           <h3>Fecha hasta</h3>
@@ -64,17 +64,39 @@
         </div>
       </div>
     </div>
-
+    <div id="panelAñadirNoticia" class="añadir-noticia oculto">
+      <h2>Crear nueva noticia</h2>
+      <div class="form-grupo">
+        <label>Título *</label>
+        <input type="text" id="tituloNoticia">
+      </div>
+      <div class="form-grupo">
+        <label>Texto *</label>
+        <textarea id="textoNoticia"></textarea>
+      </div>
+      <div class="form-grupo">
+        <label>Imagen (opcional)</label>
+        <input type="file" id="imagenNoticia">
+      </div>
+      <div class="form-grupo">
+        <label>Ubicación (opcional)</label>
+        <input type="text" id="ubicacionNoticia" placeholder="Ej: Av. Corrientes 1234">
+      </div>
+      <div class="acciones-panel">
+        <button class="filtro-boton" id="publicarNoticia">Hecho</button>
+        <button class="filtro-boton cancelar" id="cancelarAñadir">Cancelar</button>
+      </div>
+    </div>
     <div id="noticias-container">
       <div id="lista_noticias"></div>
       <div id="detalle_noticia"></div>
-  </div>
+    </div>
 
   </main>
   <footer></footer>
 </body>
 <script src="script.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-     crossorigin=""></script>
+  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
 </html>

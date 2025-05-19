@@ -1,12 +1,17 @@
 document.addEventListener("DOMContentLoaded", main);
 
+let noticias = [];
 
 async function main() {
   definirRol();
   abrirPanelFiltro();
-
+  abrirPanelAñadirNoticia();
+/*
   const response = await fetch("noticia.json");
   const noticias = await response.json();
+*/
+  const response = await fetch("noticia.json");
+  noticias = await response.json();
   cargarNoticias(noticias);
 
   filtrarNoticias();
@@ -44,6 +49,10 @@ async function cargarNoticias(noticias) {
       <p>${noticia.descripcion}</p>
       <p><strong>Fecha:</strong> ${noticia.fecha}</p>
     `;
+    /* Pendiente para cargar imagen de noticias en portal
+    if (noticia.imagen) {
+     div.innerHTML += `<img src="${noticia.imagen}" alt="Imagen de la noticia">`;
+    }*/
 
     div.addEventListener("click", () => {
       const detalle = document.getElementById("detalle_noticia");
@@ -52,6 +61,36 @@ async function cargarNoticias(noticias) {
 
     contenedorNoticias.appendChild(div);
   });
+}
+
+
+function agregarNoticia() {
+  const titulo = document.getElementById("tituloNoticia").value;
+  const descripcion = document.getElementById("textoNoticia").value;
+  const ubicacion = document.getElementById("ubicacionNoticia").value;
+
+  if (titulo === "" || descripcion === "") {
+    alert("Los campos Título y Texto son obligatorios.");
+    return;
+  }
+
+  const nuevaNoticia = {
+    id_noticia: noticias.length + 1,
+    titulo: titulo,
+    descripcion: descripcion,
+    calle: ubicacion !== "" ? ubicacion : "",
+    altura: "",
+    partido: "",
+    coordenada_x: "",
+    coordenada_y: "",
+    tema: "Sin tema",
+    fecha: new Date().toISOString().split("T")[0]
+  };
+
+  noticias.push(nuevaNoticia);      
+  cargarNoticias(noticias);           
+  limpiarFormularioAñadir();          
+  document.getElementById("panelAñadirNoticia").classList.remove("visible"); // ocultamos panel
 }
 
 
@@ -70,7 +109,7 @@ function mostrarDetalleNoticia(noticia) {
   `;
 
   //Aca estaria bueno llamar a otra funcion que normalice la direccion y la guarde en la noticia correspondiente en el json
-  //Lo devería hacer la carga de noticia, la direccion ya quedaría en el JSON
+  //Lo debería hacer la carga de noticia, la direccion ya quedaría en el JSON
 //  const dir = normalizarDireccion({
 //    calle: noticia.calle,
 //    altura: noticia.altura,
@@ -155,15 +194,45 @@ function normalizarDireccion(json_direccion) {
     });
 }
 
+//Menu añadir noticias
+function abrirPanelAñadirNoticia() {
+  const botonAñadir = document.getElementById("btnAñadirNoticia");
+  const panel = document.getElementById("panelAñadirNoticia");
+  const botonCancelar = document.getElementById("cancelarAñadir");
+  const contenedorFiltros = document.getElementById("contenedorFiltros");
+  const botonHecho = document.getElementById("publicarNoticia");
+
+  botonAñadir.addEventListener("click", () => {
+    panel.classList.toggle("visible");
+    contenedorFiltros.classList.remove("visible");
+  });
+
+  botonCancelar.addEventListener("click", () => {
+    limpiarFormularioAñadir();
+    panel.classList.remove("visible");
+  });
+
+  botonHecho.addEventListener("click",agregarNoticia);
+}
+
+function limpiarFormularioAñadir() {
+  document.getElementById("tituloNoticia").value = "";
+  document.getElementById("textoNoticia").value = "";
+  document.getElementById("imagenNoticia").value = "";
+  document.getElementById("ubicacionNoticia").value = "";
+}
+
 
 //Filtro de noticias
 function abrirPanelFiltro() {
-  let botonFiltro = document.getElementById("toggleFiltros");
-  let contenedorFiltros = document.getElementById("contenedorFiltros");
+  const botonFiltro = document.getElementById("toggleFiltros");
+  const contenedorFiltros = document.getElementById("contenedorFiltros");
+  const panelAñadirNoticia = document.getElementById("panelAñadirNoticia")
 
-  botonFiltro.addEventListener("click", () =>
-    contenedorFiltros.classList.toggle("visible")
-  );
+  botonFiltro.addEventListener("click", () => {
+    contenedorFiltros.classList.toggle("visible");
+    panelAñadirNoticia.classList.remove("visible");
+  });
 }
 
 

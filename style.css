@@ -1,65 +1,66 @@
 /* Reset básico y fuentes */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Open Sans', sans-serif;
-  }
-  body{
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+}
 
-  .btnRoles {
-    display: flex;
-  }
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
 
-  .menuNoticias {
-     display: flex;
-  }
-  
-  /* Estilos para navegación */
-  nav {
-    background-color: rgb(45, 74, 128);
-    color: white;
-    padding: 1.5rem 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  
-  nav h1 {
-    font-size: 2rem;
-  }
-  
-  nav div {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  nav div a,
-  nav div button {
-    color: #f0f8ff;
-    text-decoration: none;
-    font-size: 1.2rem;
-  }
-  
-  button {
-    background-color: rgba(91, 144, 210, 0.6);
-    border: 2px solid white;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    cursor: pointer;
-    color:  white;
-  }
-  
-  nav div button:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-  }
+.btnRoles {
+  display: flex;
+}
 
-  .boton_rol {
+.menuNoticias {
+  display: flex;
+}
+
+/* Estilos para navegación */
+nav {
+  background-color: rgb(45, 74, 128);
+  color: white;
+  padding: 1.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+nav h1 {
+  font-size: 2rem;
+}
+
+nav div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav div a,
+nav div button {
+  color: #f0f8ff;
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+button {
+  background-color: rgba(91, 144, 210, 0.6);
+  border: 2px solid white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  color: white;
+}
+
+nav div button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.boton_rol {
   background: transparent;
   border: 2px solid rgba(91, 144, 210, 0.8);
   color: rgba(91, 144, 210, 1);
@@ -76,142 +77,191 @@
   box-shadow: 0 0 10px rgba(91, 144, 210, 0.6);
 }
 
-  /* Sección de filtros */
-  
-  .seccion_filtros {
-    background-color: rgb(115, 143, 194);
-    padding: 2rem;
-    color: white;
-  }
-  
-  .seccion_filtros h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-  }
-  
-  .filtros {
-    display: none; /* flex */
-    gap: 1.5rem;
-    align-items: flex-end;
-    flex-wrap: wrap;
-  }
+/* Sección de filtros */
+
+.seccion_filtros {
+  background-color: rgb(115, 143, 194);
+  padding: 2rem;
+  color: white;
+}
+
+.seccion_filtros h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.filtros {
+  display: none;
+  /* flex */
+  gap: 1.5rem;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
 
 .filtros.visible {
   display: flex;
 }
-  
-  .filtros > div {
-    display: flex;
-    flex-direction: column;
-    gap: 0.3rem;
-    min-width: 180px;
-  }
-  
-  .filtros input,
-  .filtros select {
-    padding: 0.5rem;
-    border-radius: 8px;
-    border: none;
-    font-size: 1rem;
-    outline: none;
-  }
-  
-  .filtros label,
-  .filtros h3 {
-    font-weight: bold;
-    font-size: 1rem;
-  }
-  
-  .filtro-boton {
-      display: flex;
-      gap: 5px; 
-      align-items: center; 
-  }
-  
 
-  .filtro-boton button {
-    padding: 0.7rem 1.5rem;
-    background-color: rgb(45, 74, 128);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    cursor: pointer;
-  }
-  
-  .filtro-boton button:hover {
-    background-color: white;
-    color: rgb(45, 74, 128);
+.filtros>div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  min-width: 180px;
+}
 
-  }
-  
+.filtros input,
+.filtros select {
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: none;
+  font-size: 1rem;
+  outline: none;
+}
 
-  .toggle-btn {
-    padding: 0.7rem 1.5rem;
-    background-color: white;
-    color: rgb(45, 74, 128);
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    cursor: pointer;
-    margin-bottom: 1rem;
-  }
-  
-  .toggle-btn:hover {
-    background-color: #e0e0e0;
-  }
+.filtros label,
+.filtros h3 {
+  font-weight: bold;
+  font-size: 1rem;
+}
 
-  main{
-    flex-grow: 1;
-  }
-  
-  /* Estilos para cmapa */
-  .map {
-     height: 400px; 
-     width: 400px;
-  }
-
-  /* Footer */
-  footer {
-    background-color: rgb(45, 74, 128);
-    height: 80px;
-    margin-top: 2rem;
-  }
-  
+.filtro-boton {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
 
 
-    /* Estilos para noticia */
+.filtro-boton button {
+  padding: 0.7rem 1.5rem;
+  background-color: rgb(45, 74, 128);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.filtro-boton button:hover {
+  background-color: white;
+  color: rgb(45, 74, 128);
+
+}
+
+
+.toggle-btn {
+  padding: 0.7rem 1.5rem;
+  background-color: white;
+  color: rgb(45, 74, 128);
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+.toggle-btn:hover {
+  background-color: #e0e0e0;
+}
+
+main {
+  flex-grow: 1;
+}
+
+/*Seccion añadir noticia*/
+
+.añadir-noticia {
+  display: none;
+  background-color: rgb(115, 143, 194);
+  padding: 1.5rem;
+  border-radius: 12px;
+  color: white;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 1rem 2rem;
+}
+
+.añadir-noticia.visible{
+  display: flex;
+}
+
+.form-grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.form-grupo input,
+.form-grupo textarea {
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: none;
+  font-size: 1rem;
+  outline: none;
+}
+
+.form-grupo textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.acciones-panel {
+  display: flex;
+  gap: 1rem;
+}
+
+.cancelar {
+  background-color: #ccc;
+  color: rgb(45, 74, 128);
+}
+
+
+/* Estilos para cmapa */
+.map {
+  height: 400px;
+  width: 400px;
+}
+
+/* Footer */
+footer {
+  background-color: rgb(45, 74, 128);
+  height: 80px;
+  margin-top: 2rem;
+}
+
+
+
+/* Estilos para noticia */
 .noticia {
-    border: 1px solid #ddd;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .noticia img {
-    width: 100%;
-    height: auto;
-    border-radius: 5px;
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
 }
 
 .noticia h2 {
-    font-size: 1.5em;
-    margin: 5px 0;
+  font-size: 1.5em;
+  margin: 5px 0;
 }
 
 .noticia p {
-    font-size: 1em;
-    margin: 5px 0;
+  font-size: 1em;
+  margin: 5px 0;
 }
 
 .noticia span {
-    display: block;
-    margin-top: 5px;
-    color: #555;
+  display: block;
+  margin-top: 5px;
+  color: #555;
 }
 
-  /* Estilos para contenedor de noticias con detalle */
+/* Estilos para contenedor de noticias con detalle */
 #noticias-container {
   display: flex;
   gap: 2rem;
@@ -244,10 +294,3 @@
   height: 200px;
   margin-top: 1rem;
 }
-
-
-
-
-
-
-  
