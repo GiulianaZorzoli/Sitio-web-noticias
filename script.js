@@ -30,7 +30,10 @@ function definirRol(){
   });
 
   btnVisitante.addEventListener("click", () => {
+    const panel = document.getElementById("panelAñadirNoticia");
     btnAñadirNoticia.style.display = "none";
+    limpiarFormularioAñadir();
+    panel.classList.remove("visible");
   });
 }
 
@@ -64,13 +67,31 @@ async function cargarNoticias(noticias) {
 }
 
 
-function agregarNoticia() {
-  const titulo = document.getElementById("tituloNoticia").value;
-  const descripcion = document.getElementById("textoNoticia").value;
-  const ubicacion = document.getElementById("ubicacionNoticia").value;
 
-  if (titulo === "" || descripcion === "") {
+async function agregarNoticia() {
+  const titulo = document.getElementById("tituloNoticia").value.trim();
+  const descripcion = document.getElementById("textoNoticia").value.trim();
+  const calle = document.getElementById("calleNoticia").value.trim();
+  const altura = document.getElementById("alturaNoticia").value.trim();
+  const partido = document.getElementById("partidoNoticia").value.trim();
+
+  // Validación básica
+  if (!titulo || !descripcion) {
     alert("Los campos Título y Texto son obligatorios.");
+    return;
+  }
+
+  const ubi = { calle, altura, partido };
+
+  const coordenadasDireccion = await obtenerCoordenadas(ubi);
+
+  let x = coordenadasDireccion.x;
+  let y = coordenadasDireccion.y;
+
+
+  // Validar que se hayan podido obtener las coordenadas
+  if (coordenadasDireccion === null) {
+    alert("No se pudo geolocalizar la dirección ingresada.");
     return;
   }
 
@@ -78,20 +99,21 @@ function agregarNoticia() {
     id_noticia: noticias.length + 1,
     titulo: titulo,
     descripcion: descripcion,
-    calle: ubicacion !== "" ? ubicacion : "",
-    altura: "",
-    partido: "",
-    coordenada_x: "",
-    coordenada_y: "",
+    calle: calle,
+    altura: altura,
+    partido: partido,
+    coordenada_x: x,
+    coordenada_y: y,
     tema: "Sin tema",
     fecha: new Date().toISOString().split("T")[0]
   };
 
-  noticias.push(nuevaNoticia);      
-  cargarNoticias(noticias);           
-  limpiarFormularioAñadir();          
-  document.getElementById("panelAñadirNoticia").classList.remove("visible"); // ocultamos panel
+  noticias.push(nuevaNoticia);
+  cargarNoticias(noticias);
+  limpiarFormularioAñadir();
+  document.getElementById("panelAñadirNoticia").classList.remove("visible");
 }
+
 
 
 function mostrarDetalleNoticia(noticia) {
@@ -212,14 +234,27 @@ function abrirPanelAñadirNoticia() {
     panel.classList.remove("visible");
   });
 
-  botonHecho.addEventListener("click",agregarNoticia);
+  botonHecho.addEventListener("click", () => {
+    agregarNoticia();
+    limpiarFormularioAñadir();
+    panel.classList.remove("visible");
+  });
 }
 
 function limpiarFormularioAñadir() {
   document.getElementById("tituloNoticia").value = "";
   document.getElementById("textoNoticia").value = "";
-  document.getElementById("imagenNoticia").value = "";
-  document.getElementById("ubicacionNoticia").value = "";
+  const imgInput = document.getElementById("imagenNoticia");
+  if (imgInput) imgInput.value = "";
+
+  const calleInput = document.getElementById("calleNoticia");
+  if (calleInput) calleInput.value = "";
+
+  const alturaInput = document.getElementById("alturaNoticia");
+  if (alturaInput) alturaInput.value = "";
+
+  const partidoInput = document.getElementById("partidoNoticia");
+  if (partidoInput) partidoInput.value = "";
 }
 
 
@@ -318,3 +353,20 @@ function limpiarFiltros(){
     omitirDetalleNoticia();
   });
 }
+
+
+async function obtenerCoordenadas(ubi) {
+  const direccionNormalizada = await normalizarDireccion(ubi);
+  if (direccionNormalizada && direccionNormalizada.coordenadas) {
+    const coordenadas = {
+      x: direccionNormalizada.coordenadas.x,
+      y: direccionNormalizada.coordenadas.y,
+    }
+    return coordenadas;
+  } else {
+    console.error("No se pudo obtener las coordenadas.");
+    return null;
+  }
+}
+
+
