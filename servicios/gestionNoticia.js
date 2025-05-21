@@ -45,8 +45,6 @@ function mostrarDetalleNoticia(noticia) {
   card.appendChild(cuerpo);
 
   if (noticia.coordenada_x && noticia.coordenada_y) {
-    console.log(noticia.x)
-    console.log(noticia.y)
     const mapaDiv = obtenerMapa(noticia.coordenada_x, noticia.coordenada_y);
 
     card.appendChild(mapaDiv);
