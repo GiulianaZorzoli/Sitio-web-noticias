@@ -84,7 +84,10 @@ async function agregarNoticia() {
   }
 
   const inputImagen = document.getElementById("imagenNoticia");
-  const archivoImagen = inputImagen.files[0];
+  const archivosImagen = Array.from(inputImagen.files); 
+
+  const imagenes = archivosImagen.map(file => "Imagenes/" + file.name); 
+
 
 
   const ubi = { calle, altura, partido };
@@ -112,7 +115,7 @@ async function agregarNoticia() {
     coordenada_y: y,
     tema: tema,
     fecha: new Date().toISOString().split("T")[0],
-    imagen: archivoImagen ? "Imagenes/" + archivoImagen.name : null
+    imagenes: imagenes
   };
 
   noticias.push(nuevaNoticia);
@@ -138,27 +141,8 @@ function mostrarDetalleNoticia(noticia) {
     <p><strong>Fecha:</strong> ${noticia.fecha}</p>
   `;
 
-  if (noticia.imagen) {
-    const img = document.createElement("img");
-    img.src = noticia.imagen;
-    img.alt = "Imagen de la noticia";
-    img.style.width = "100px";
-    img.style.height = "100px";
-    img.style.objectFit = "cover"; // recorta sin deformar
-    img.style.borderRadius = "8px"; // opcional, bordes redondeados
-    card.appendChild(img);
-  }
+  VisualizarCarruselImagenes(noticia, card);
 
-  //Aca estaria bueno llamar a otra funcion que normalice la direccion y la guarde en la noticia correspondiente en el json
-  //Lo debería hacer la carga de noticia, la direccion ya quedaría en el JSON
-//  const dir = normalizarDireccion({
-//    calle: noticia.calle,
-//    altura: noticia.altura,
-//    partido: noticia.partido,
-//  });
-
-// Se podria definir que las noticias solo las registramos con calle y numeracion, no con dos entre calles.
-// Si no se registro una calle para la noticia, dicha noticia no posee una localizacion geografica.
     if (noticia.calle != ''){
       const mapaDiv = obtenerMapa(
       noticia.coordenada_x,
@@ -177,6 +161,41 @@ function omitirDetalleNoticia() {
   contenedor.innerHTML = ""; 
   contenedor.classList.remove("visible"); 
 }
+
+function VisualizarCarruselImagenes(noticia, card) {
+  if (noticia.imagenes && noticia.imagenes.length > 0) {
+    const carruselDiv = document.createElement("div");
+    carruselDiv.classList.add("carrusel");
+
+    const img = document.createElement("img");
+    img.src = noticia.imagenes[0];
+    img.alt = "Imagen de la noticia";
+    img.classList.add("img-carrusel");
+    carruselDiv.appendChild(img);
+
+    let index = 0;
+
+    const btnPrev = document.createElement("button");
+    btnPrev.textContent = "◀";
+    btnPrev.addEventListener("click", () => {
+      index = (index - 1 + noticia.imagenes.length) % noticia.imagenes.length;
+      img.src = noticia.imagenes[index];
+    });
+
+    const btnNext = document.createElement("button");
+    btnNext.textContent = "▶";
+    btnNext.addEventListener("click", () => {
+      index = (index + 1) % noticia.imagenes.length;
+      img.src = noticia.imagenes[index];
+    });
+
+    carruselDiv.prepend(btnPrev);
+    carruselDiv.appendChild(btnNext);
+
+    card.appendChild(carruselDiv);
+  }
+}
+
 
 
 //Normalizacion de direccion de una noticia y obtencion de mapa
