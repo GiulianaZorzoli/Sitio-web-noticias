@@ -13,22 +13,26 @@
 </head>
 
 <body>
+
   <nav>
-    <h1>Muni Al Día</h1>
+    <div>
+      <a href=""><img src="Imagenes/municipalidad_logo.png" alt="Logo" class="logo" /></a>
+      <h1>Muni Al Día</h1>
+    </div>
 
     <div id="menuNoticias">
       <div>
-        <a href="">Noticias</a>
         <button id="btnAñadirNoticia" style="display: none;">Añadir Noticia</button>
       </div>
 
+      
       <div id="btnRoles">
         <button class="boton_rol" id="btnAdmin">Administrador</button>
         <button class="boton_rol" id="btnVisitante">Visitante</button>
       </div>
-
     </div>
   </nav>
+
   <main id="noticias">
     <div class="seccion_filtros">
       <button id="toggleFiltros" class="toggle-btn">Filtrar noticias</button>
@@ -116,6 +120,7 @@
   </main>
   <footer></footer>
 </body>
+
 <script src="servicios/geolocalizacion.js"></script>
 <script src="servicios/filtro.js"></script>
 <script src="servicios/gestionNoticia.js"></script>

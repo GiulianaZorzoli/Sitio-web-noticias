@@ -12,6 +12,14 @@ body {
   height: 100vh;
 }
 
+.logo {
+  height: 140px;
+  width:  140px;
+  vertical-align: middle;
+
+}
+
+
 .btnRoles {
   display: flex;
 }
@@ -60,10 +68,7 @@ nav div button:hover {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
-#btnAñadirNoticia{
-  margin-left: 2rem;
-  padding: .2rem .6rem;
-}
+
 
 .boton_rol {
   background: transparent;
