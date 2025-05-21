@@ -17,9 +17,10 @@
     <h1>Muni Al Día</h1>
 
     <div id="menuNoticias">
-      <a href="">Noticias</a>
-
-      <button id="btnAñadirNoticia" style="display: none;">Añadir Noticia</button>
+      <div>
+        <a href="">Noticias</a>
+        <button id="btnAñadirNoticia" style="display: none;">Añadir Noticia</button>
+      </div>
 
       <div id="btnRoles">
         <button class="boton_rol" id="btnAdmin">Administrador</button>
@@ -79,7 +80,7 @@
         <input type="file" id="imagenNoticia" multiple>
       </div>
       <div>
-          <label for="SeleccionTema">Tema</label>
+          <label for="SeleccionTema">Tema *</label>
           <select id="SeleccionTema" name="opciones">
             <option value="Seleccionar" selected>Seleccionar</option>
             <option value="Municipio">Municipio</option>
@@ -115,10 +116,10 @@
   </main>
   <footer></footer>
 </body>
-<script src="geolocalizacion.js"></script>
-<script src="filtro.js"></script>
-<script src="gestionNoticia.js"></script>
-<script src="paneles.js"></script>
+<script src="servicios/geolocalizacion.js"></script>
+<script src="servicios/filtro.js"></script>
+<script src="servicios/gestionNoticia.js"></script>
+<script src="servicios/paneles.js"></script>
 <script src="main.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>

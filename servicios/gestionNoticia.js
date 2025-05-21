@@ -1,6 +1,5 @@
 //Carga y visualizacion de noticias
 async function cargarNoticias(noticias) {
-
   const contenedorNoticias = document.getElementById("lista_noticias");
 
   contenedorNoticias.innerHTML = "";
@@ -15,7 +14,7 @@ async function cargarNoticias(noticias) {
     `;
     div.addEventListener("click", () => {
       const detalle = document.getElementById("detalle_noticia");
-        mostrarDetalleNoticia(noticia);
+      mostrarDetalleNoticia(noticia);
     });
 
     contenedorNoticias.appendChild(div);
@@ -24,12 +23,12 @@ async function cargarNoticias(noticias) {
 
 function mostrarDetalleNoticia(noticia) {
   const contenedor = document.getElementById("detalle_noticia");
-  contenedor.innerHTML = ""; 
+  contenedor.innerHTML = "";
 
   const card = document.createElement("div");
   card.classList.add("detalle");
 
- const encabezado = document.createElement("div");
+  const encabezado = document.createElement("div");
   encabezado.innerHTML = `
     <p><strong>${noticia.tema}</strong></p>
     <h3>${noticia.titulo}</h3>
@@ -45,23 +44,22 @@ function mostrarDetalleNoticia(noticia) {
   `;
   card.appendChild(cuerpo);
 
-    if (noticia.calle != ''){
-      const mapaDiv = obtenerMapa(
-      noticia.coordenada_x,
-      noticia.coordenada_y
-    );
+  if (noticia.x && noticia.y) {
+    console.log(noticia.x)
+    console.log(noticia.y)
+    const mapaDiv = obtenerMapa(noticia.coordenada_x, noticia.coordenada_y);
 
     card.appendChild(mapaDiv);
-    }
+  }
 
-    contenedor.appendChild(card);
-    contenedor.classList.add("visible");
+  contenedor.appendChild(card);
+  contenedor.classList.add("visible");
 }
 
 function omitirDetalleNoticia() {
   const contenedor = document.getElementById("detalle_noticia");
-  contenedor.innerHTML = ""; 
-  contenedor.classList.remove("visible"); 
+  contenedor.innerHTML = "";
+  contenedor.classList.remove("visible");
 }
 
 async function agregarNoticia() {
@@ -70,31 +68,59 @@ async function agregarNoticia() {
   const calle = document.getElementById("calleNoticia").value.trim();
   const altura = document.getElementById("alturaNoticia").value.trim();
   const partido = document.getElementById("partidoNoticia").value.trim();
-  const tema = document.getElementById("SeleccionTema").value.trim();;
+  const tema = document.getElementById("SeleccionTema").value.trim();
 
   // Validación básica
-  if (!titulo || !descripcion) {
-    alert("Los campos Título y Texto son obligatorios.");
+  if (titulo == "" || descripcion == "" || tema == "Seleccionar") {
+    alert("Los campos Título, Texto y Tema son obligatorios.");
     return;
   }
 
   const inputImagen = document.getElementById("imagenNoticia");
-  const archivosImagen = Array.from(inputImagen.files); 
+  const archivosImagen = Array.from(inputImagen.files);
 
-  const imagenes = archivosImagen.map(file => "Imagenes/" + file.name); 
+  let imagenes;
+  if (archivosImagen.length > 0) {
+    console.log(archivosImagen)
+    imagenes = archivosImagen.map((file) => URL.createObjectURL(file));
+  }
 
-  const ubi = { calle, altura, partido };
+  let x = "";
+  let y = "";
 
-  const coordenadasDireccion = await obtenerCoordenadas(ubi);
+  if (calle != "" || altura != "" || partido != "") {
 
-  let x = coordenadasDireccion.x;
-  let y = coordenadasDireccion.y;
+    const ubi = { calle, altura, partido };
 
+    const coordenadasDireccion = await obtenerCoordenadas(ubi);
 
-  // Validar que se hayan podido obtener las coordenadas
-  if (coordenadasDireccion === null) {
-    alert("No se pudo geolocalizar la dirección ingresada.");
-    return;
+    // Validar que se hayan podido obtener las coordenadas
+    if (coordenadasDireccion === null) {
+      if (calle == "") {
+        alert(
+          "No se pudo geolocalizar la dirección ingresada. Por favor, ingrese una calle."
+        );
+        return;
+      }
+  
+      if (altura == "") {
+        alert(
+          "No se pudo geolocalizar la dirección ingresada. Por favor, ingrese una altura."
+        );
+        return;
+      }
+      if (partido == "") {
+        alert(
+          "No se pudo geolocalizar la dirección ingresada. Por favor, ingrese un partido."
+        );
+        return;
+      }
+      alert("No se pudo geolocalizar la dirección ingresada. Por favor, revise los datos e intente nuevamente.");
+      return;
+    } else {
+      x = coordenadasDireccion.x;
+      y = coordenadasDireccion.y;
+    }
   }
 
   const nuevaNoticia = {
@@ -104,12 +130,14 @@ async function agregarNoticia() {
     calle: calle,
     altura: altura,
     partido: partido,
-    coordenada_x: x,
-    coordenada_y: y,
+    coordenada_x: x || "",
+    coordenada_y: y || "",
     tema: tema,
     fecha: new Date().toISOString().split("T")[0],
-    imagenes: imagenes
+    imagenes: imagenes,
   };
+
+  console.log(nuevaNoticia)
 
   noticias.push(nuevaNoticia);
   cargarNoticias(noticias);

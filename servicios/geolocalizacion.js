@@ -48,7 +48,6 @@ async function obtenerCoordenadas(ubi) {
   }
 }
 
-//Normalizacion de direccion de una noticia y obtencion de mapa
 function obtenerMapa(coordenada_x, coordenada_y) {
   const mapDiv = document.createElement("div");
   mapDiv.style.width = "300px";
@@ -63,7 +62,7 @@ function obtenerMapa(coordenada_x, coordenada_y) {
         '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     }).addTo(map);
     L.marker([coordenada_y, coordenada_x]).addTo(map);
-  }, 10); // pequeño delay para asegurar que el div esté en el DOM
+  }, 10); 
 
   return mapDiv;
 }

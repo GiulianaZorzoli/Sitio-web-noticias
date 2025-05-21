@@ -9,7 +9,7 @@ async function main() {
   filtrarNoticias();
   limpiarFiltros();
 
-  const response = await fetch("noticia.json");
+  const response = await fetch("noticias.json");
   noticias = await response.json();
   cargarNoticias(noticias);
 }

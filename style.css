@@ -60,6 +60,11 @@ nav div button:hover {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
+#btnAñadirNoticia{
+  margin-left: 2rem;
+  padding: .2rem .6rem;
+}
+
 .boton_rol {
   background: transparent;
   border: 2px solid rgba(91, 144, 210, 0.8);
@@ -215,7 +220,7 @@ main {
 }
 
 
-/* Estilos para cmapa */
+/* Estilos para mapa */
 .map {
   height: 400px;
   width: 400px;
@@ -237,6 +242,7 @@ footer {
   margin: 10px 0;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
 }
 
 .noticia img {
