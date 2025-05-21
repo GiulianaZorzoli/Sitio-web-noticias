@@ -6,6 +6,8 @@ async function main() {
   definirRol();
   abrirPanelFiltro();
   abrirPanelAñadirNoticia();
+  filtrarNoticias();
+  limpiarFiltros();
 /*
   const response = await fetch("noticia.json");
   const noticias = await response.json();
@@ -14,8 +16,7 @@ async function main() {
   noticias = await response.json();
   cargarNoticias(noticias);
 
-  filtrarNoticias();
-  limpiarFiltros();
+
 }
 
 
@@ -74,6 +75,7 @@ async function agregarNoticia() {
   const calle = document.getElementById("calleNoticia").value.trim();
   const altura = document.getElementById("alturaNoticia").value.trim();
   const partido = document.getElementById("partidoNoticia").value.trim();
+  const tema = document.getElementById("SeleccionTema").value.trim();;
 
   // Validación básica
   if (!titulo || !descripcion) {
@@ -104,12 +106,13 @@ async function agregarNoticia() {
     partido: partido,
     coordenada_x: x,
     coordenada_y: y,
-    tema: "Sin tema",
+    tema: tema,
     fecha: new Date().toISOString().split("T")[0]
   };
 
   noticias.push(nuevaNoticia);
   cargarNoticias(noticias);
+  filtrarNoticias();
   limpiarFormularioAñadir();
   document.getElementById("panelAñadirNoticia").classList.remove("visible");
 }
@@ -283,26 +286,25 @@ async function obtenerNoticiasPorFiltro(){
   const inputFechaHasta = document.getElementById("busquedaFechaHasta");
   const inputTema = document.getElementById("busquedaTema");
 
-  const response = await fetch("noticia.json");
-  let noticias = await response.json();
+  let noticiasFiltradas = []
 
   if(inputContenido.value != ""){
-    noticias = filtrarPorContenido(noticias, inputContenido.value);
+    noticiasFiltradas = filtrarPorContenido(noticias, inputContenido.value);
   }
 
   if (inputFechaDesde.value !=""){
-    noticias = filtrarPorFecha(noticias, inputFechaDesde.value, true);
+    noticiasFiltradas = filtrarPorFecha(noticias, inputFechaDesde.value, true);
   }
 
   if (inputFechaHasta.value !=""){
-    noticias = filtrarPorFecha(noticias, inputFechaHasta.value, false);
+    noticiasFiltradas = filtrarPorFecha(noticias, inputFechaHasta.value, false);
   }
 
   if (inputTema.value != "Seleccionar"){
-    noticias = filtrarPorTema(noticias, inputTema.value);
+    noticiasFiltradas = filtrarPorTema(noticias, inputTema.value);
   }
 
-  cargarNoticias(noticias);
+  cargarNoticias(noticiasFiltradas);
   omitirDetalleNoticia();
 }
 
@@ -345,10 +347,7 @@ function limpiarFiltros(){
     document.getElementById("busquedaFechaDesde").value = "";
     document.getElementById("busquedaFechaHasta").value = "";
     document.getElementById("busquedaTema").value = "Seleccionar"; // o el valor por defecto
-
-
-    const response = await fetch("noticia.json");
-    const noticias = await response.json();
+  
     cargarNoticias(noticias);
     omitirDetalleNoticia();
   });

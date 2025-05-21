@@ -75,9 +75,21 @@
         <textarea id="textoNoticia"></textarea>
       </div>
       <div class="form-grupo">
-        <label>Imagen (opcional)</label>
+        <label>Imagen</label>
         <input type="file" id="imagenNoticia">
       </div>
+      <div>
+          <label for="SeleccionTema">Tema</label>
+          <select id="SeleccionTema" name="opciones">
+            <option value="Seleccionar" selected>Seleccionar</option>
+            <option value="Municipio">Municipio</option>
+            <option value="Eventos">Eventos</option>
+            <option value="Economía">Economía</option>
+            <option value="Social">Social</option>
+            <option value="Deporte">Deporte</option>
+            <option value="Gastronomía">Gastronomía</option>
+          </select>
+        </div>
       <div class="form-grupo">
         <label>Calle *</label>
         <input type="text" id="calleNoticia" placeholder="Ej: Av. Corrientes">
