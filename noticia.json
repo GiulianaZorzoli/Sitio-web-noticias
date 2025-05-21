@@ -9,7 +9,8 @@
     "coordenada_x": "-58.6734868714286",
     "coordenada_y":"-34.5582905428571" ,
     "tema": "Deporte",
-    "fecha": "2024-01-07"
+    "fecha": "2024-01-07",
+    "imagen": "Imagenes/dino.png"
 },
 {
     "id_noticia": 2,
@@ -21,7 +22,8 @@
     "coordenada_x": "",
     "coordenada_y":"" ,
     "tema": "Eventos",
-    "fecha": "2025-05-10"
+    "fecha": "2025-05-10",
+    "imagen": "Imagenes/dino.png"
 },
 {
     "id_noticia": 3,
@@ -33,7 +35,8 @@
     "coordenada_x": "",
     "coordenada_y":"" ,
     "tema": "Municipio",
-    "fecha": "2025-05-08"
+    "fecha": "2025-05-08",
+    "imagen": "Imagenes/dino.png"
 },
 {
     "id_noticia": 4,
@@ -45,6 +48,7 @@
     "coordenada_x": "",
     "coordenada_y":"" ,
     "tema": "Economía",
-    "fecha": "2025-05-05"
+    "fecha": "2025-05-05",
+    "imagen": "Imagenes/dino.png"
   }
 ]

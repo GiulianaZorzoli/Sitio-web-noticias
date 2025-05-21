@@ -83,6 +83,10 @@ async function agregarNoticia() {
     return;
   }
 
+  const inputImagen = document.getElementById("imagenNoticia");
+  const archivoImagen = inputImagen.files[0];
+
+
   const ubi = { calle, altura, partido };
 
   const coordenadasDireccion = await obtenerCoordenadas(ubi);
@@ -107,7 +111,8 @@ async function agregarNoticia() {
     coordenada_x: x,
     coordenada_y: y,
     tema: tema,
-    fecha: new Date().toISOString().split("T")[0]
+    fecha: new Date().toISOString().split("T")[0],
+    imagen: archivoImagen ? "Imagenes/" + archivoImagen.name : null
   };
 
   noticias.push(nuevaNoticia);
@@ -132,6 +137,17 @@ function mostrarDetalleNoticia(noticia) {
     <p>${noticia.tema}</p>
     <p><strong>Fecha:</strong> ${noticia.fecha}</p>
   `;
+
+  if (noticia.imagen) {
+    const img = document.createElement("img");
+    img.src = noticia.imagen;
+    img.alt = "Imagen de la noticia";
+    img.style.width = "100px";
+    img.style.height = "100px";
+    img.style.objectFit = "cover"; // recorta sin deformar
+    img.style.borderRadius = "8px"; // opcional, bordes redondeados
+    card.appendChild(img);
+  }
 
   //Aca estaria bueno llamar a otra funcion que normalice la direccion y la guarde en la noticia correspondiente en el json
   //Lo debería hacer la carga de noticia, la direccion ya quedaría en el JSON
