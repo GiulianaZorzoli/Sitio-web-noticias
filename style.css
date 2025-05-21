@@ -299,14 +299,14 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 13px;
 }
 
 .img-carrusel {
-  width: 150px;
-  height: 100px;
+  width: 230px;
+  height: 130px;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 3px;
 }
 
 .carrusel button {

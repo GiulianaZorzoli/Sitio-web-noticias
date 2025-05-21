@@ -6,14 +6,13 @@
     "calle":"Maestro Ángel D'Elía",
     "altura":1360,
     "partido":"San Miguel",
-    "coordenada_x": "-58.6734868714286",
-    "coordenada_y":"-34.5582905428571" ,
+    "coordenada_x": "-58.7079504571429",
+    "coordenada_y":"-34.5427001938776" ,
     "tema": "Deporte",
     "fecha": "2024-01-07",
     "imagenes": [
-        "Imagenes/dino.png",
-        "Imagenes/dino2.jpg",
-        "Imagenes/dino.png"
+        "Imagenes/CASM.jpg",
+        "Imagenes/ESCUELA CASM.jpg"
     ]
 },
 {
@@ -23,31 +22,29 @@
     "calle":"Av. Dr. Ricardo Balbín",
     "altura":1200,
     "partido":"San Miguel",
-    "coordenada_x": "",
-    "coordenada_y":"" ,
+    "coordenada_x": "-58.7120145",
+    "coordenada_y":"-34.5422356" ,
     "tema": "Eventos",
     "fecha": "2025-05-10",
     "imagenes": [
-        "Imagenes/dino.png",
-        "Imagenes/dino.png",
-        "Imagenes/dino.png"
+        "Imagenes/SAN MIGUEL FESTEJO.jpg",
+        "Imagenes/BAILE SAN MIGUEL EVENTO.jpg" 
     ]
 },
 {
     "id_noticia": 3,
     "titulo": "Nuevas obras municipales en el partido",
     "descripcion": "Se iniciaron los trabajos de pavimentación.",
-    "calle":"Chubut",
-    "altura":1019,
+    "calle":"Tucuman",
+    "altura":534,
     "partido":"Bella Vista",
-    "coordenada_x": "",
-    "coordenada_y":"" ,
+    "coordenada_x": "-58.6734036959184",
+    "coordenada_y":"-34.5599751755102" ,
     "tema": "Municipio",
     "fecha": "2025-05-08",
     "imagenes": [
-        "Imagenes/dino.png",
-        "Imagenes/dino.png",
-        "Imagenes/dino.png"
+        "Imagenes/OBRA PUBLICA SAN MIGUEL.jpg",
+        "Imagenes/PAVIMENTACION SAN MIGUEL.jpg"
     ]
 },
 {
@@ -62,9 +59,6 @@
     "tema": "Economía",
     "fecha": "2025-05-05",
     "imagenes": [
-        "Imagenes/dino.png",
-        "Imagenes/dino.png",
-        "Imagenes/dino.png"
     ]
   }
 ]
